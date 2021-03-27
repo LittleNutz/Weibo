@@ -14,7 +14,18 @@ cookie = ''
 def main():
     baseurl = 'https://photo.weibo.com/photos/get_all?6697930990&album_id=4283828063672324&count=100&page=1&type=&__rnd=1504068705105'
     savepath = "D:/保存图片/"
-    file = open(savepath + "信息.txt", 'r')
+    
+    if os.path.exists(savepath):
+        pass
+    else:
+        os.makedirs(savepath)
+        file = open(savepath + "information.txt", 'w')
+        opdata = {'lastdate' : '','lastlink' : '','lastsave':'','picsum' : 0}
+        json_str = json.dumps(opdata, indent=0)
+        file.write(json_str)
+        file.close()
+    
+    file = open(savepath + "information.txt", 'r')
     js = file.read()
     opdata = json.loads(js)
     file.close()
@@ -29,7 +40,7 @@ def main():
     opdata["lastsave"] = str(datetime.date.today())
     opdata["picsum"] = opdata["picsum"] + len(imglink)
     print('目前共有 %d 张图片'%opdata['picsum'])
-    with open(savepath + "信息.txt", 'w') as f:
+    with open(savepath + "information.txt", 'w') as f:
         json_str = json.dumps(opdata, indent=0)
         f.write(json_str)
         f.close()
