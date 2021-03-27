@@ -27,7 +27,7 @@ def main():
         file.write(json_str)
         file.close()
     
-    file = open(savepath + "信息.txt", 'r')
+    file = open(savepath + "information.txt", 'r')
     js = file.read()
     opdata = json.loads(js)
     file.close()
@@ -36,7 +36,7 @@ def main():
     getAllvideo(alllink,savepath)
     opdata['lastvidlink'] = alllink[0]
     opdata['vidsum'] = opdata['vidsum'] + len(alllink)
-    with open(savepath + "信息.txt", 'w') as f:
+    with open(savepath + "information.txt", 'w') as f:
         json_str = json.dumps(opdata, indent=0)
         f.write(json_str)
         f.close()
