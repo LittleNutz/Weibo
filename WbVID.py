@@ -12,12 +12,22 @@ import json
 
 #爬取不同bo主视频只需改动firsturl和savepath
 
-cookie = 'SINAGLOBAL=4528122394319.048.1600936936249; _ga=GA1.2.833437142.1606195636; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh5PKh7NpCZ1znsvzEpYGqu5JpX5KMhUgL.Fo-01heNe050eKM2dJLoIEYLxKBLB.eL1-2LxK.LBKeL1--LxKML1-2L1hBLxKML12zLB--LxK-LB-BL1KWkP7tt; UM_distinctid=17854adad36143-0abd0d21be5f7a-5771031-1fa400-17854adad374b2; wvr=6; UOR=,,login.sina.com.cn; ALF=1648367161; SSOLoginState=1616831162; SCF=Ak6xHWie_7adbXRb51tgHc9nV-h5buq8TGL2GFbh7v91DODM5GYnrbuuI4F3qkqRMxrZwV_DuywP-h8U0XaBIgE.; SUB=_2A25NWpLqDeRhGeNN41EW8y7PyjuIHXVuEYMirDV8PUNbmtANLWnVkW9NSXm5CipMZh9II30XECN4IN_5mZubklNX; TC-V-WEIBO-G0=35846f552801987f8c1e8f7cec0e2230; _s_tentry=weibo.com; Apache=1126419880609.8257.1616831167788; ULV=1616831168165:46:22:9:1126419880609.8257.1616831167788:1616651077349; XSRF-TOKEN=yzXPsyq3TFZY_NHnf004t66p; WBPSESS=2EzaQ5g-6pnS48T5Zp0l5DYmNAZQvQhvH7Ed1MXP1OrjhCn76PCatxNbFBuqklJjiwktZtYpNb3h3Z7zO3xTL-8a3rR9IHskMr8tV1Ym4Nyjawv53p-62aFk9-WO_FaY'
+cookie = ''
 
 def main():
     firsturl="https://weibo.com/p/1005056697930990/photos?type=video#place"
-    savepath = "D:/一尾阿梓Azusa/VID/"
-    file = open("D:/一尾阿梓Azusa/信息.txt", 'r')
+    savepath = "D:/VID/"
+    if os.path.exists(savepath):
+        pass
+    else:
+        os.makedirs(savepath)
+        file = open(savepath + "information.txt", 'w')
+        opdata = {'lastvidlink' : '','vidsum' : 0}
+        json_str = json.dumps(opdata, indent=0)
+        file.write(json_str)
+        file.close()
+    
+    file = open(savepath + "信息.txt", 'r')
     js = file.read()
     opdata = json.loads(js)
     file.close()
@@ -26,7 +36,7 @@ def main():
     getAllvideo(alllink,savepath)
     opdata['lastvidlink'] = alllink[0]
     opdata['vidsum'] = opdata['vidsum'] + len(alllink)
-    with open("D:/一尾阿梓Azusa/信息.txt", 'w') as f:
+    with open(savepath + "信息.txt", 'w') as f:
         json_str = json.dumps(opdata, indent=0)
         f.write(json_str)
         f.close()
