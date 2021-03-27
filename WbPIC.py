@@ -10,10 +10,10 @@ import datetime
 import  json
 
 
-cookie = 'SINAGLOBAL=4528122394319.048.1600936936249; _ga=GA1.2.833437142.1606195636; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh5PKh7NpCZ1znsvzEpYGqu5JpX5KMhUgL.Fo-01heNe050eKM2dJLoIEYLxKBLB.eL1-2LxK.LBKeL1--LxKML1-2L1hBLxKML12zLB--LxK-LB-BL1KWkP7tt; UM_distinctid=17854adad36143-0abd0d21be5f7a-5771031-1fa400-17854adad374b2; wvr=6; UOR=,,login.sina.com.cn; ALF=1648367161; SSOLoginState=1616831162; SCF=Ak6xHWie_7adbXRb51tgHc9nV-h5buq8TGL2GFbh7v91DODM5GYnrbuuI4F3qkqRMxrZwV_DuywP-h8U0XaBIgE.; SUB=_2A25NWpLqDeRhGeNN41EW8y7PyjuIHXVuEYMirDV8PUNbmtANLWnVkW9NSXm5CipMZh9II30XECN4IN_5mZubklNX; _s_tentry=weibo.com; Apache=1126419880609.8257.1616831167788; ULV=1616831168165:46:22:9:1126419880609.8257.1616831167788:1616651077349; WBStorage=8daec78e6a891122|undefined'
+cookie = ''
 def main():
     baseurl = 'https://photo.weibo.com/photos/get_all?6697930990&album_id=4283828063672324&count=100&page=1&type=&__rnd=1504068705105'
-    savepath = "D:/一尾阿梓Azusa/"
+    savepath = "D:/保存图片/"
     file = open(savepath + "信息.txt", 'r')
     js = file.read()
     opdata = json.loads(js)
